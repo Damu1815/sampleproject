@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,31 +27,31 @@ public class CountryController {
 
 
 	@Autowired
-	private CountrySevice countrySevice;
+	private CountrySevice countryService;
 
 	@PostMapping("/country")
 	public ResponseEntity<String> addNewCountry(@RequestBody Country country) {
-		return new ResponseEntity<String>(countrySevice.addNewCountry(country), HttpStatus.OK);
+		return new ResponseEntity<String>(countryService.addNewCountry(country), HttpStatus.OK);
 	}
 
 	@PutMapping("/country")
 	public ResponseEntity<String> updateCountry(@RequestBody Country country) {
-		return new ResponseEntity<String>(countrySevice.updateCountry(country), HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>(countryService.updateCountry(country), HttpStatus.BAD_REQUEST);
 	}
 
 	@GetMapping("/country")
 	public ResponseEntity<List<Country>> getAll() {
-		return new ResponseEntity<List<Country>>(countrySevice.getAllCountries(), HttpStatus.OK);
+		return new ResponseEntity<List<Country>>(countryService.getAllCountries(), HttpStatus.OK);
 	}
 
 	@GetMapping("/country/{id}")
-	public ResponseEntity<Country> getCountryById(String Id) {
-		return new ResponseEntity<>(countrySevice.getCountryById(Id), HttpStatus.OK);
+	public ResponseEntity<Country> getCountryById(@PathVariable String Id) {
+		return new ResponseEntity<>(countryService.getCountryById(Id), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/country/{id}")
-	public ResponseEntity<?> deleteCountryById(String id) {
-		boolean deleted = countrySevice.deleteCountryById(id);
+	public ResponseEntity<?> deleteCountryById(@PathVariable String id) {
+		boolean deleted = countryService.deleteCountryById(id);
 		if (deleted) {
 			return new ResponseEntity(HttpStatus.NO_CONTENT);
 		} else {
