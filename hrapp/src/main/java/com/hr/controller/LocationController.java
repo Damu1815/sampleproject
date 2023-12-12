@@ -34,7 +34,7 @@ public class LocationController {
 
 		@PutMapping()
 		public ResponseEntity<String> updateLocation(@RequestBody Location location) {
-			return new ResponseEntity<String>(locationService.updateLocation(location), HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>(locationService.updateLocation(location), HttpStatus.OK);
 		}
 
 		@GetMapping()
