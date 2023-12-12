@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hr.entity.Country;
+
 import com.hr.entity.Region;
 import com.hr.service.RegionService;
 
@@ -51,9 +51,9 @@ public class RegionController {
 	public ResponseEntity<?> deleteRegionById(@PathVariable Long id) {
 		boolean deleted = regionService.deleteRegionById(id);
 		if (deleted) {
-			return new ResponseEntity(HttpStatus.NO_CONTENT);
+			return new ResponseEntity("Record deleted Sucessfully",HttpStatus.OK);
 		} else {
-			return new ResponseEntity("country not found", HttpStatus.NOT_FOUND);
+			return new ResponseEntity("Region not found", HttpStatus.NOT_FOUND);
 		}
 	}
 	   
