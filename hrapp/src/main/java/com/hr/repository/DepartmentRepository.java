@@ -10,13 +10,15 @@ import org.springframework.stereotype.Repository;
 import com.hr.entity.Department;
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
+	 @Query("SELECT d.departmentName AS departmentName, MAX(e.salary) AS maxSalary FROM Employee e JOIN e.department d WHERE d.departmentId = :departmentId GROUP BY d.departmentName")
+	    Object findMaxSalaryInDepartment(@Param("departmentId") Long departmentId);
 
-//	@Query("SELECT d.departmentName, MAX(e.salary) FROM Employee e JOIN e.department d WHERE d.departmentId = :departmentId GROUP BY d.departmentName")
-	 Object findMaxSalaryInDepartment(@Param("departmentId") Long departmentId);
-	 
-//	 @Query("SELECT d.departmentName, MIN(e.salary) FROM Employee e JOIN e.department d WHERE d.departmentId = :departmentId GROUP BY d.departmentName")
-	 Object findMinSalaryInDepartment(@Param("departmentId") Long departmentId);
+	    @Query("SELECT d.departmentName AS departmentName, MIN(e.salary) AS minSalary FROM Employee e JOIN e.department d WHERE d.departmentId = :departmentId GROUP BY d.departmentName")
+	    Object findMinSalaryInDepartment(@Param("departmentId") Long departmentId);
+	
 	 
 	 
-	  List<Department> getAllDepartmentsEmployeeWorkedByEmployeeId(Long empid);
+	    @Query("SELECT d FROM Department d WHERE d.manager.employeeId = :employeeId")
+	    List<Department> getAllDepartmentsEmployeeWorkedByEmployeeId(@Param("employeeId") Long employeeId);
+	
 }

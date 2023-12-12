@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hr.entity.Department;
-
+import com.hr.repository.DepartmentRepository;
 import com.hr.service.DepartmentService;
 
 
@@ -25,6 +25,14 @@ public class DepartmentController {
 	  
 	@Autowired
 	private DepartmentService departmentService;
+	
+	@Autowired
+	DepartmentRepository departmentRepository;
+	
+	@GetMapping("/all")
+	public List<Department> getAll(){
+		return departmentRepository.findAll();
+	}
 	
 	@PostMapping()
 	public ResponseEntity<String> addNewDepartment(@RequestBody Department department){

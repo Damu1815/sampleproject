@@ -43,8 +43,8 @@ public class RegionController {
 	
 	
 	@GetMapping("/region/{id}")
-	public ResponseEntity<Region> getRegionById(@PathVariable Long Id) {
-		return new ResponseEntity<>(regionService.getRegionById(Id), HttpStatus.OK);
+	public ResponseEntity<Region> getRegionById(@PathVariable Long id) {
+		return new ResponseEntity<>(regionService.getRegionById(id), HttpStatus.OK);
 	}
 
 	@DeleteMapping("/region/{id}")

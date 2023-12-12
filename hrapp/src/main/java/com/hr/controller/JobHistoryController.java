@@ -10,7 +10,7 @@ import com.hr.entity.JobHistory;
 import com.hr.repository.JobHistoryRepository;
 @RestController
 public class JobHistoryController {
-	   @Autowired
+	   	@Autowired
 	    private JobHistoryRepository jobHistoryRepository;
 	    
 	   @GetMapping("/alljobhistory")
