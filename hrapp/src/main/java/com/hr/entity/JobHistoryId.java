@@ -1,11 +1,9 @@
 package com.hr.entity;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
-@SuppressWarnings("serial")
-public class JobHistoryId implements Serializable {
+public class JobHistoryId {
   
 	private Employee employee;
-	private Date startDate;
+	private LocalDate startDate;
 }

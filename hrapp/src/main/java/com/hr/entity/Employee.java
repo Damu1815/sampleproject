@@ -1,11 +1,7 @@
 package com.hr.entity;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -50,7 +46,7 @@ public class Employee {
 
     @NotNull
     @Column(name = "hire_date")
-    private Date hireDate;
+    private LocalDate hireDate;
 
     @ManyToOne
     @JsonManagedReference
@@ -70,7 +66,7 @@ public class Employee {
     private Employee manager;
 
     @ManyToOne
-    @JoinColumn(name = "department_id")
+    @JoinColumn(name = "department_id" )
     @JsonManagedReference
     private Department department;
 

@@ -1,10 +1,9 @@
 package com.hr.entity;
-import java.io.Serializable;
-import java.util.Date;
+
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -23,7 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobHistory implements Serializable{
+public class JobHistory{
 
     @Id
     @ManyToOne
@@ -34,12 +33,12 @@ public class JobHistory implements Serializable{
     @Id
     @Column(name = "start_date")
     @JsonProperty(required=true)
-    private Date startDate;
+    private LocalDate startDate;
 
    
     @Column(name = "end_date")
     @JsonProperty(required=true)
-    private Date endDate;
+    private LocalDate endDate;
 
     @ManyToOne
     @JoinColumn(name = "job_id")
