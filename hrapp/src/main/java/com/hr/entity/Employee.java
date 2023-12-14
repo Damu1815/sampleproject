@@ -1,16 +1,20 @@
 package com.hr.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,13 +24,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee {
+public class Employee{
 
     @Id
-    @Column(name = "employee_id" ,columnDefinition = "decimal(4, 0)")
+    @NotNull
+    @Column(name = "employee_id")
     private Long employeeId;
 
-    @NotNull
     @Column(name = "first_name")
     private String firstName;
 
@@ -35,13 +39,10 @@ public class Employee {
     private String lastName;
 
     @NotNull
-    @Email
     @Column(name = "email", unique = true)
     private String email;
 
-    @NotNull
-    @Pattern(regexp = "\\d{10}", message = "Phone number must be 10 digits")
-    @Column(name = "phone_number")
+    @Column(name = "phone_number",length=20)
     private String phoneNumber;
 
     @NotNull
@@ -49,9 +50,11 @@ public class Employee {
     private LocalDate hireDate;
 
     @ManyToOne
-    @JsonManagedReference
-    @JoinColumn(name = "job_id")
+    @JoinColumn(name = "job_id",insertable = false, updatable = false)
+    @JsonIgnore
     private Job job;
+    @Column(name="job_id")
+    private String jobId;
 
     @Column(name = "salary")
     private Double salary;
@@ -61,14 +64,19 @@ public class Employee {
     private Double commissionPct;
 
     @ManyToOne
-    @JoinColumn(name = "manager_id")
-    @JsonManagedReference
+    @JoinColumn(name = "manager_id",insertable = false, updatable = false)
+    @JsonIgnore
     private Employee manager;
+    @Column(name="manager_id")
+    private Long managerId;
 
     @ManyToOne
-    @JoinColumn(name = "department_id" )
-    @JsonManagedReference
+    @JoinColumn(name = "department_id",insertable = false, updatable = false)
+    @JsonIgnore
     private Department department;
+    @Column(name="department_id")
+    private Long departmentId;
+    
 
     
 }

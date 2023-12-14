@@ -1,10 +1,11 @@
 package com.hr.entity;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,26 +24,29 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Department {
+public class Department{
 
     @Id
-    @Column(name = "department_id",columnDefinition = "decimal(4, 0)")
+    @NotNull
+    @Column(name = "department_id")
     private Long departmentId;
 
     @NotNull
     @Column(name = "department_name")
-    @JsonProperty(required=true)
     private String departmentName;
     
     @ManyToOne
-    @JoinColumn(name ="manager_id")
-    @JsonBackReference
+    @JoinColumn(name ="manager_id",insertable = false, updatable = false)
+    @JsonIgnore
     private Employee manager;
+    @Column(name="manager_id")
+    private Long mangerId;
     
     @ManyToOne
-    @JoinColumn(name = "location_id")
-    @JsonManagedReference
+    @JoinColumn(name = "location_id",insertable = false, updatable = false)
+    @JsonIgnore
     private Location location;
+    @Column(name = "location_id")
+    private Long locationId;
     
-    
-}
+    }
