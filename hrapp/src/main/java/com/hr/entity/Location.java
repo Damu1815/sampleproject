@@ -1,4 +1,7 @@
 package com.hr.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -18,35 +21,32 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Location {
+public class Location{
 
     @Id
-    @Column(name = "location_id",columnDefinition = "decimal(4, 0)")
-    @JsonProperty(required=true)
+    @NotNull
+    @Column(name = "location_id")
     private Long locationId;
 
-    @NotNull
     @Column(name = "street_address")
-    @JsonProperty(required=true)
     private String streetAddress;
 
     @Column(name = "postal_code")
-    @JsonProperty(required=true)
     private String postalCode;
 
     @NotNull
     @Column(name = "city")
-    @JsonProperty(required=true)
     private String city;
 
     @Column(name = "state_province")
-    @JsonProperty(required=true)
     private String stateProvince;
 
     @ManyToOne
-    @JoinColumn(name="country_id")
-    @JsonManagedReference
+    @JoinColumn(name="country_id",insertable = false, updatable = false)
+    @JsonIgnore
     private Country country;
+    @Column(name="country_id")
+    private String countryId;
 
     
 }
