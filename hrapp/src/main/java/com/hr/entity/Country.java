@@ -35,12 +35,12 @@ public class Country{
     private String countryName;
 
     @ManyToOne
-    @JoinColumn(name = "region_id",insertable = false, updatable = false)
-    @JsonIgnore
+    @JoinColumn(name = "region_id")
+//    @JsonIgnore
     private Region region;
     
-    @Column(name = "region_id")
-    private Long regionId;
-  
+//    @Column(name = "region_id")
+//    private Long regionId;
+//  
   
 }

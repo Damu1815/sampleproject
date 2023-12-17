@@ -21,32 +21,28 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Location{
+public class Location {
 
-    @Id
-    @NotNull
-    @Column(name = "location_id")
-    private Long locationId;
+	@Id
+	@NotNull
+	@Column(name = "location_id")
+	private Long locationId;
 
-    @Column(name = "street_address")
-    private String streetAddress;
+	@Column(name = "street_address")
+	private String streetAddress;
 
-    @Column(name = "postal_code")
-    private String postalCode;
+	@Column(name = "postal_code")
+	private String postalCode;
 
-    @NotNull
-    @Column(name = "city")
-    private String city;
+	@NotNull
+	@Column(name = "city")
+	private String city;
 
-    @Column(name = "state_province")
-    private String stateProvince;
+	@Column(name = "state_province")
+	private String stateProvince;
 
-    @ManyToOne
-    @JoinColumn(name="country_id",insertable = false, updatable = false)
-    @JsonIgnore
-    private Country country;
-    @Column(name="country_id")
-    private String countryId;
+	@ManyToOne
+	@JoinColumn(name = "country_id")
+	private Country country;
 
-    
 }

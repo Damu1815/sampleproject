@@ -17,47 +17,37 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Entity
 @Table(name = "job_history")
 @IdClass(JobHistoryId.class)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobHistory{
+public class JobHistory {
 
-    @Id
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "employee_id",insertable = false, updatable = false)
-    @JsonManagedReference
-    private Employee employee;
-    @Column(name = "employee_id")
-    private Long employeeId;
+	@Id
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "employee_id")
+	private Employee employee;
 
-    @Id
-    @NotNull
-    @Column(name = "start_date")
-    private Date startDate;
+	@Id
+	@NotNull
+	@Column(name = "start_date")
+	private Date startDate;
 
-    @NotNull
-    @Column(name = "end_date")
-    private LocalDate endDate;
-    
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "job_id",insertable = false, updatable = false)
-    @JsonIgnore
-    private Job job;
-    @Column(name = "job_id")
-    private String jobId;
+	@NotNull
+	@Column(name = "end_date")
+	private LocalDate endDate;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id",insertable = false, updatable = false)
-    @JsonIgnore
-    private Department department;
-    @Column(name="department_id")
-    private Long departmentId;
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "job_id")
+	private Job job;
 
-    
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "department_id")
+	private Department department;
+
 }

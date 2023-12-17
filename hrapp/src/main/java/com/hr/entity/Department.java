@@ -36,17 +36,16 @@ public class Department{
     private String departmentName;
     
     @ManyToOne
-    @JoinColumn(name ="manager_id",insertable = false, updatable = false)
     @JsonIgnore
+    @JoinColumn(name ="manager_id")
     private Employee manager;
-    @Column(name="manager_id")
-    private Long mangerId;
+    
+
     
     @ManyToOne
-    @JoinColumn(name = "location_id",insertable = false, updatable = false)
-    @JsonIgnore
+    @JoinColumn(name = "location_id")
     private Location location;
-    @Column(name = "location_id")
-    private Long locationId;
+    
+
     
     }

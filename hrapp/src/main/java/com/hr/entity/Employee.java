@@ -24,60 +24,48 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Employee{
+public class Employee {
 
-    @Id
-    @NotNull
-    @Column(name = "employee_id")
-    private Long employeeId;
+	@Id
+	@NotNull
+	@Column(name = "employee_id")
+	private Long employeeId;
 
-    @Column(name = "first_name")
-    private String firstName;
+	@Column(name = "first_name")
+	private String firstName;
 
-    @NotNull
-    @Column(name = "last_name")
-    private String lastName;
+	@NotNull
+	@Column(name = "last_name")
+	private String lastName;
 
-    @NotNull
-    @Column(name = "email", unique = true)
-    private String email;
+	@NotNull
+	@Column(name = "email", unique = true)
+	private String email;
 
-    @Column(name = "phone_number",length=20)
-    private String phoneNumber;
+	@Column(name = "phone_number", length = 20)
+	private String phoneNumber;
 
-    @NotNull
-    @Column(name = "hire_date")
-    private LocalDate hireDate;
+	@NotNull
+	@Column(name = "hire_date")
+	private LocalDate hireDate;
 
-    @ManyToOne
-    @JoinColumn(name = "job_id",insertable = false, updatable = false)
-    @JsonIgnore
-    private Job job;
-    @Column(name="job_id")
-    private String jobId;
+	@ManyToOne
+	@JoinColumn(name = "job_id")
+	private Job job;
 
-    @Column(name = "salary")
-    private Double salary;
+	@Column(name = "salary")
+	private Double salary;
 
-    
-    @Column(name = "commission_pct")
-    private Double commissionPct;
+	@Column(name = "commission_pct")
+	private Double commissionPct;
 
-    @ManyToOne
-    @JoinColumn(name = "manager_id",insertable = false, updatable = false)
-    @JsonIgnore
-    private Employee manager;
-    @Column(name="manager_id")
-    private Long managerId;
+	@ManyToOne
+	@JoinColumn(name = "manager_id")
+	
+	private Employee manager;
 
-    @ManyToOne
-    @JoinColumn(name = "department_id",insertable = false, updatable = false)
-    @JsonIgnore
-    private Department department;
-    @Column(name="department_id")
-    private Long departmentId;
-    
+	@ManyToOne
+	@JoinColumn(name = "department_id")
+	private Department department;
 
-    
 }
-
