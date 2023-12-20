@@ -30,13 +30,19 @@ public class EmployeeController {
 
 	@Autowired
 	EmployeeService employeeService;
+	
+	@Autowired
+	EmployeeRepository employeeRepository;
 
 
 	@GetMapping()
 	public Collection<Employee> getAll() {
 		return employeeService.getAll();
 	}
-	
+	@GetMapping("/employee/{employeeId}")
+	public Employee getEmployee(@PathVariable Long employeeId) {
+		return employeeRepository.findById(employeeId).get();
+	}
 	@GetMapping("/findfname/{firstname}")
 	public ResponseEntity<List<Employee>> getByFirstName(@PathVariable("firstname")String firstName) {
 		List<Employee>  employeeList= employeeService.getByFirstName(firstName);
@@ -117,7 +123,7 @@ public class EmployeeController {
 		return new ResponseEntity<>(employeeList,HttpStatus.OK);
 	}
 	
-	@PostMapping
+	@PostMapping("/addEmployee")
 	ResponseEntity<String> addEmployee(@RequestBody Employee employee){
 	 employeeService.saveEmployee(employee);
 	 return new ResponseEntity<>("Record Created Successfully",HttpStatus.CREATED);

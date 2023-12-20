@@ -34,7 +34,7 @@ public class JobHistory {
 	@Id
 	@NotNull
 	@Column(name = "start_date")
-	private Date startDate;
+	private LocalDate startDate;
 
 	@NotNull
 	@Column(name = "end_date")
